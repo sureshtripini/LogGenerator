@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loggeneratordeployment
+  labels:
+    app: loggenerator
+    env: test
+spec:
+  template:
+    metadata:
+      name: loggenerator
+      labels:
+        app: loggenerator
+        env: test
+    spec:
+      containers:
+        - name: loggenerator
+          image: sureshtripini/loggenerator:v8
+  selector:
+    matchLabels:
+      app: loggenerator
+  replicas: 1
