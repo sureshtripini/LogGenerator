@@ -7,7 +7,7 @@ steps:
    - name: gcr.io/cloud-builders/docker
      args: ["push", "gcr.io/$PROJECT_ID/loggenerator:latest"]
    - name: gcr.io/cloud-builders/gcloud
-     args: ["-c", "https://github.com/sureshtripini/LogGenerator.git", "cd LogGenerator"]  
+     args: ["-c", "git clone https://github.com/sureshtripini/LogGenerator.git", "cd LogGenerator"]  
      #step 3
 #   - name: 'gcr.io/cloud-builders/kubectl'
 #     args: ['apply', '-f', 'loggenerator/deployment.yaml']
