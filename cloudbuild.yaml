@@ -34,13 +34,13 @@ steps:
 #     env:
 #     - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-c'
 #     - 'CLOUDSDK_CONTAINER_CLUSTER=btm-cluster'
-#   - name: "gcr.io/cloud-builders/gke-deploy"
-#     args:
-#     - run
-#     - --filename=./LogGenerator/deployment.yaml
-#     - --image=gcr.io/$PROJECT_ID/loggenerator:latest
-#     - --location=europe-west3-c
-#     - --cluster=btm-clusterr
+   - name: "gcr.io/cloud-builders/gke-deploy"
+     args:
+     - run
+     - --filename=/workspace/.git/LogGenerator/deployment.yaml
+     - --image=gcr.io/$PROJECT_ID/loggenerator:latest
+     - --location=europe-west3-c
+     - --cluster=btm-clusterr
 #   - name: 'gcr.io/cloud-builders/docker'
 #     entrypoint: 'bash'
 #     args: ['-c', 'docker login --username=sureshtripini --password=Qwerty@123']
