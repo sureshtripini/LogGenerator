@@ -2,19 +2,33 @@ steps:
    - name: 'maven:3-jdk-8'
      entrypoint: 'mvn'
      args: ["package", "-Dmaven.test.skip=true"]
+   - name: 'gcr.io/cloud-builders/docker'
+     args: ["build", "-t", "gcr.io/$PROJECT_ID/loggenerator:latest", "--build-arg=JAR_FILE=target/*.jar", "."]
+   - name: gcr.io/cloud-builders/docker
+     args: ["push", "gcr.io/$PROJECT_ID/loggenerator:latest"]   
+     #step 3
+#   - name: 'gcr.io/cloud-builders/kubectl'
+#     args: ['apply', '-f', 'loggenerator/deployment.yaml']
+#     env:
+#     - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-c'
+#     - 'CLOUDSDK_CONTAINER_CLUSTER=btm-cluster'
+   - name: "gcr.io/cloud-builders/gke-deploy"
+     args:
+     - run
+     - --filename=./LogGenerator/deployment.yaml
+     - --image=gcr.io/$PROJECT_ID/loggenerator:latest
+     - --location=europe-west3-c
+     - --cluster=btm-clusterr
 #   - name: 'gcr.io/cloud-builders/docker'
-#     args: ["build", "-t", "gcr.io/$PROJECT_ID/loggenerator", "--build-arg=JAR_FILE=target/*.jar", "."]
-#   - name: gcr.io/cloud-builders/docker
-#     args: ["push", "gcr.io/$PROJECT_ID/loggenerator:latest"]
-   - name: 'gcr.io/cloud-builders/docker'
-     entrypoint: 'bash'
-     args: ['-c', 'docker login --username=sureshtripini --password=Qwerty@123']
-   - name: 'gcr.io/cloud-builders/docker'
-     entrypoint: 'bash'
-     args: ['-c', 'docker build -t sureshtripini/loggenerator:latest .']
-   - name: 'gcr.io/cloud-builders/docker'
-     entrypoint: 'bash'
-     args: ['-c', 'docker push sureshtripini/loggenerator:latest']
+#     entrypoint: 'bash'
+#     args: ['-c', 'docker login --username=sureshtripini --password=Qwerty@123']
+#   - name: 'gcr.io/cloud-builders/docker'
+#     entrypoint: 'bash'
+#     args: ['-c', 'docker build -t sureshtripini/loggenerator:latest .']
+#   - name: 'gcr.io/cloud-builders/docker'
+#     entrypoint: 'bash'
+#     args: ['-c', 'docker push sureshtripini/loggenerator:latest']
 #https://cloud.google.com/build/docs/interacting-with-dockerhub-images
+#https://medium.com/platformer-blog/ci-cd-with-gke-and-google-cloud-build-98a797ecf346
 #images: ["gcr.io/$PROJECT_ID/DummyFileGenerator"]
 
