@@ -6,9 +6,8 @@ steps:
      args: ["build", "-t", "gcr.io/$PROJECT_ID/loggenerator:latest", "--build-arg=JAR_FILE=target/*.jar", "."]
    - name: gcr.io/cloud-builders/docker
      args: ["push", "gcr.io/$PROJECT_ID/loggenerator:latest"]
-   - name: gcr.io/cloud-builders/gcloud
-     args: ["-c", "git clone https://github.com/sureshtripini/LogGenerator.git", "cd LogGenerator"]  
-     #step 3
+   - name: 'gcr.io/cloud-builders/git'
+     args: ['clone', 'https://github.com/sureshtripini/LogGenerator.git']
 #   - name: 'gcr.io/cloud-builders/kubectl'
 #     args: ['apply', '-f', 'loggenerator/deployment.yaml']
 #     env:
@@ -17,7 +16,7 @@ steps:
    - name: "gcr.io/cloud-builders/gke-deploy"
      args:
      - run
-     - --filename=./deployment.yaml
+     - --filename=./LogGenerator/deployment.yaml
      - --image=gcr.io/$PROJECT_ID/loggenerator:latest
      - --location=europe-west3-c
      - --cluster=btm-clusterr
