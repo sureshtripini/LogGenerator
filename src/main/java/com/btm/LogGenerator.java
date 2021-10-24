@@ -27,7 +27,7 @@ public class LogGenerator {
 	public static void main(String[] args) throws IOException {
 
 		//Docker container
-		String logFilePath = "/var/log/dummyapp/log-dummy.log";
+		//String logFilePath = "/var/log/dummyapp/log-dummy.log";
 		
 		//Local
 		//String logFilePath = "C:\\logs\\Output.log";
@@ -76,8 +76,8 @@ public class LogGenerator {
 			//log.error("Exception Occured :" + e);
 		}
 
-		File output = new File(logFilePath);
-		FileWriter writer = new FileWriter(output);
+		//File output = new File(logFilePath);
+		//FileWriter writer = new FileWriter(output);
 		Random random = new Random();
 
 		try {
@@ -109,12 +109,12 @@ public class LogGenerator {
 				//log.info("Response Generated :" + response);
 				//logger.info("ATM Request !!"+request);
 				System.out.println("ATM Request:"+request);
-				writer.write(request);
+				//writer.write(request);
 				Thread.sleep(500);
 				//logger.info("ATM Response !!!"+response);
 				System.out.println("ATM Response:"+response);
-				writer.write(response);
-				writer.flush();
+				//writer.write(response);
+				//writer.flush();
 				Thread.sleep(500);
 			}
 		} catch (Exception e) {
@@ -123,7 +123,7 @@ public class LogGenerator {
 		}
 
 		finally {
-			closeLogFile(writer);
+			//closeLogFile(writer);
 		}
 	}
 
