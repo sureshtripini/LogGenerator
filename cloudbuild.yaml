@@ -1,21 +1,28 @@
 steps:
+   # Generate application jar
    - name: 'maven:3-jdk-8'
+     id: Creating application jar
      entrypoint: 'mvn'
      args: ["package", "-Dmaven.test.skip=true"]
+   # Build docker image
    - name: 'gcr.io/cloud-builders/docker'
+     id: Creating docker image
      args: ["build", "-t", "gcr.io/$PROJECT_ID/loggenerator:latest", "--build-arg=JAR_FILE=target/*.jar", "."]
+   # Push docker image
    - name: gcr.io/cloud-builders/docker
+     id: Pushing docker image to google cloud registry
      args: ["push", "gcr.io/$PROJECT_ID/loggenerator:latest"]
-#   - name: 'gcr.io/cloud-builders/gcloud'
-#     id: Clone deployment repository
-#     entrypoint: /bin/sh
-#     args:
-#     - '-c'
-#     - |
-#       git clone https://github.com/sureshtripini/LogGenerator.git && \
-#       cd LogGenerator && \
-#       git checkout main && \
-#       git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
+   # Clone git repo
+   - name: 'gcr.io/cloud-builders/gcloud'
+     id: Clone deployment repository
+     entrypoint: /bin/sh
+     args:
+     - '-c'
+     - |
+       git clone https://github.com/sureshtripini/LogGenerator.git && \
+       cd LogGenerator && \
+       git checkout main && \
+       git config user.email $(gcloud auth list --filter=status:ACTIVE --format='value(account)')
 #   - name: 'gcr.io/cloud-builders/kubectl'
 #     id: Deploy cards legacy service to GKE Cluster
 #     args:
@@ -25,8 +32,7 @@ steps:
 #     env:
 #     - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-c'
 #     - 'CLOUDSDK_CONTAINER_CLUSTER=btm-cluster'
-   - name: 'bash'
-     args: [pwd]
+
 #   - name: 'gcr.io/cloud-builders/git'
 #     args: ['clone', 'https://github.com/sureshtripini/LogGenerator.git']
 #   - name: 'gcr.io/cloud-builders/kubectl'
@@ -34,16 +40,16 @@ steps:
 #     env:
 #     - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-c'
 #     - 'CLOUDSDK_CONTAINER_CLUSTER=btm-cluster'
-   - name: "gcr.io/cloud-builders/gke-deploy"
-     args:
-     - run
-     - --filename=/workspace/.git/LogGenerator/deployment.yaml
-     - --image=gcr.io/$PROJECT_ID/loggenerator:latest
-     - --location=europe-west3-c
-     - --cluster=btm-clusterr
+#   - name: "gcr.io/cloud-builders/gke-deploy"
+#     args:
+#     - run
+#     - --filename=/workspace/.git/LogGenerator/deployment.yaml
+#     - --image=gcr.io/$PROJECT_ID/loggenerator:latest
+#     - --location=europe-west3-c
+#     - --cluster=btm-clusterr
 #   - name: 'gcr.io/cloud-builders/docker'
 #     entrypoint: 'bash'
-#     args: ['-c', 'docker login --username=sureshtripini --password=Qwerty@123']
+#     args: ['-c', 'docker login --username=sureshtripini --password=XXXXX']
 #   - name: 'gcr.io/cloud-builders/docker'
 #     entrypoint: 'bash'
 #     args: ['-c', 'docker build -t sureshtripini/loggenerator:latest .']
