@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: loggenerator
-          image: gcr.io/$PROJECT_ID/loggenerator:latest
+          image: gcr.io/lbgretailpocs/loggenerator:latest
   selector:
     matchLabels:
       app: loggenerator

@@ -29,7 +29,7 @@ steps:
      args:
      - 'apply'
      - '-f'
-     - './LogGenerator/deployment.yaml'
+     - './LogGenerator/kubernetes'
      env:
      - 'CLOUDSDK_COMPUTE_ZONE=europe-west2-c'
      - 'CLOUDSDK_CONTAINER_CLUSTER=btm-cluster'
