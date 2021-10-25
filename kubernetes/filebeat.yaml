@@ -37,7 +37,7 @@ data:
 
     processors:
       - dissect:
-         tokenizer: '%{MessageType:Time} | %{WorkStationID} | %{Type} | %{ISOMessageType}'
+         tokenizer: '%{MessageType:Time}|%{WorkStationID}|%{Type}|%{ISOMessageType}'
          field: "message"
       - add_cloud_metadata:
       - add_host_metadata:
