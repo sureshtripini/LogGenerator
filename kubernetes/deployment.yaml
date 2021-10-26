@@ -19,4 +19,4 @@ spec:
   selector:
     matchLabels:
       app: loggenerator
-  replicas: 1
+  replicas: 3

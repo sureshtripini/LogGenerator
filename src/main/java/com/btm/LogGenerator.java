@@ -6,9 +6,6 @@
  */
 
 package com.btm;
-
-import java.io.IOException;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LogGenerator {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 
 		try {
 
@@ -30,6 +27,8 @@ public class LogGenerator {
 				String binCardGroup = StubData.getBinCardGroup();
 				String cardNumber = binCardGroup + StubData.generateCardNumber();
 				String amount = StubData.getAmount();
+				
+				
 				String responseCode = StubData.getResponseCode();
 				String issuerCode = StubData.getIssuerCode();
 				String rrnNumber = StubData.generateRRNNumber();
@@ -55,15 +54,12 @@ public class LogGenerator {
 						+ cardNumber + "010000" + amount + responseCode + deviceData[1] + "002" + issuerCode + "\n";
 
 				System.out.println("ATM Response:" + response);
-
+				
 				Thread.sleep(500);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Exception in main class is:" + e.getMessage());
-		}
-
-		finally {
 		}
 	}
 

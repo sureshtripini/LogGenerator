@@ -24,15 +24,16 @@ public class StubData {
 
 	/**
 	 * This method generates 10 digit card number.
+	 * 
 	 * @return cardNumber
 	 */
 	public static String generateCardNumber() {
 		long smallestNumber = 1000000000L;
 		long biggestNumber = 9999999999L;
 		Long cardNumber = ThreadLocalRandom.current().nextLong(smallestNumber, biggestNumber + 1);
-		return ""+cardNumber;
+		return "" + cardNumber;
 	}
-	
+
 	/**
 	 * This method does initial setup of stubdata
 	 */
@@ -44,8 +45,7 @@ public class StubData {
 	}
 
 	/**
-	 * This method adds all stub response codes into
-	 * responseCodes arraylist.
+	 * This method adds all stub response codes into responseCodes arraylist.
 	 */
 	public static void loadResponseCodes() {
 		responseCodes.add("00");
@@ -73,8 +73,8 @@ public class StubData {
 	}
 
 	/**
-	 * This method adds all the different issuer codes
-	 * into issuerRegionCodes arraylist.
+	 * This method adds all the different issuer codes into issuerRegionCodes
+	 * arraylist.
 	 */
 	public static void loadIssuerCodes() {
 		/* Region codes which approved the txns like Visa, Link, Master, Own host */
@@ -86,42 +86,42 @@ public class StubData {
 		issuerRegionCodes.add("EP");
 
 	}
-	
+
 	/**
-	 * This method adds all the different bincard groups
-	 * into binCardGroups arraylist.
+	 * This method adds all the different bincard groups into binCardGroups
+	 * arraylist.
 	 */
 	public static void loadBinCardGroups() {
-		binCardGroups.add("446259_LYDS"); 
-		binCardGroups.add("446261_LYDS"); 
-		binCardGroups.add("492181_LYDS"); 
-		binCardGroups.add("446272_LYDS"); 
+		binCardGroups.add("446259_LYDS");
+		binCardGroups.add("446261_LYDS");
+		binCardGroups.add("492181_LYDS");
+		binCardGroups.add("446272_LYDS");
 		binCardGroups.add("446274_LYDS");
-		
-		binCardGroups.add("446278_HAL"); 
+
+		binCardGroups.add("446278_HAL");
 		binCardGroups.add("446291_HAL");
-		binCardGroups.add("472411_HAL"); 
-		binCardGroups.add("472411_HAL"); 
-		binCardGroups.add("454103_HAL"); 
-		
-		binCardGroups.add("446204_BOS"); 
+		binCardGroups.add("472411_HAL");
+		binCardGroups.add("472411_HAL");
+		binCardGroups.add("454103_HAL");
+
+		binCardGroups.add("446204_BOS");
 		binCardGroups.add("446271_BOS");
 		binCardGroups.add("446292_BOS");
 		binCardGroups.add("475732_BOS");
 		binCardGroups.add("476221_BOS");
-		
-		binCardGroups.add("557483_LINK"); 
+
+		binCardGroups.add("557483_LINK");
 		binCardGroups.add("535733_LINK");
 		binCardGroups.add("522497_LINK");
 		binCardGroups.add("535778_LINK");
 		binCardGroups.add("535744_LINK");
-		
-		binCardGroups.add("476134_VISA"); 
+
+		binCardGroups.add("476134_VISA");
 		binCardGroups.add("412370_VISA");
 		binCardGroups.add("417234_VISA");
 		binCardGroups.add("405106_VISA");
 		binCardGroups.add("476173_VISA");
-		
+
 		binCardGroups.add("538675_MC");
 		binCardGroups.add("540002_MC");
 		binCardGroups.add("540537_MC");
@@ -130,8 +130,8 @@ public class StubData {
 	}
 
 	/**
-	 * This method loads the devices information from DeviceData.txt
-	 * file into deviceDataList arraylist.
+	 * This method loads the devices information from DeviceData.txt file into
+	 * deviceDataList arraylist.
 	 */
 	public static void loadDevicesData() {
 		try {
@@ -148,9 +148,11 @@ public class StubData {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * This method generates random number and then retrieves devicedata from arraylist.
+	 * This method generates random number and then retrieves devicedata from
+	 * arraylist.
+	 * 
 	 * @return deviceData
 	 */
 	public static String[] getDeviceData() {
@@ -162,30 +164,33 @@ public class StubData {
 		deviceInfo[2] = st.nextToken();
 		return deviceInfo;
 	}
-	
+
 	/**
 	 * This method generates random number and then retrieves response code from
 	 * responseCodes arraylist.
+	 * 
 	 * @return responseCode
 	 */
 	public static String getResponseCode() {
 		String responseCode = responseCodes.get(generateRandomNumber(StubData.responseCodes.size()));
 		return responseCode;
 	}
-	
+
 	/**
-	 * This method generates random number and then retrieves issuer region code from
-	 * issuerRegionCodes arraylist.
+	 * This method generates random number and then retrieves issuer region code
+	 * from issuerRegionCodes arraylist.
+	 * 
 	 * @return issuerCode
 	 */
 	public static String getIssuerCode() {
 		String issuerCode = issuerRegionCodes.get(generateRandomNumber(StubData.issuerRegionCodes.size()));
 		return issuerCode;
 	}
-	
+
 	/**
 	 * This method generates random number and then retrieves binCardGroup from
 	 * binCardGroups arraylist.
+	 * 
 	 * @return binCardGroup
 	 */
 	public static String getBinCardGroup() {
@@ -197,28 +202,32 @@ public class StubData {
 
 	/**
 	 * This method generates random amount
+	 * 
 	 * @return amount
 	 */
 	public static String getAmount() {
-		String amount = "0000000" + ((new Random().nextInt((99 - 15) + 1)) * 10) + "00";
+		int randomAmount = (10+new Random().nextInt(50))*10;
+		String amount = "0000000"+randomAmount+"00";
 		return amount;
 	}
 
 	/**
 	 * This method generats 12 digit random RRN number
+	 * 
 	 * @return rrrNumber
 	 */
 	public static String generateRRNNumber() {
 		long smallestRRNNumber = 1000_0000_0000L;
 		long biggestRRNNumber = 9999_9999_9999L;
 		Long rrrNumber = ThreadLocalRandom.current().nextLong(smallestRRNNumber, biggestRRNNumber + 1);
-		return ""+rrrNumber;
+		return "" + rrrNumber;
 
 	}
-	
+
 	/**
-	 * This method generates random number based on input value which is 
-	 * considered as maximum limit for generating random number.
+	 * This method generates random number based on input value which is considered
+	 * as maximum limit for generating random number.
+	 * 
 	 * @param maxRandomNumber
 	 * @return
 	 */
