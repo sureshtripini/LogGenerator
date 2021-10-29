@@ -45,7 +45,7 @@ data:
     cloud.id: ${ELASTIC_CLOUD_ID}
     cloud.auth: ${ELASTIC_CLOUD_AUTH}
     output.logstash:
-     hosts: ["34.105.204.150:5044"]
+     hosts: ["34.142.65.91:5044"]
     #output.elasticsearch:
        #hosts: ['35.189.82.29:9200']
     #  username: ${ELASTICSEARCH_USERNAME}
