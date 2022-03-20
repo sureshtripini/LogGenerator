@@ -1,2 +1,2 @@
 # LogGenerator
- LogGenerator1
+ LogGenerator
